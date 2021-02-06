@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:askganesha/second.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -22,15 +24,98 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 7,
+        length: 5,
         child: SafeArea(
           child: Scaffold(
             drawer: Drawer(
-              child: ListView(
-                children: [
-                  DrawerHeader(child: Icon(Icons.compare)),
-                  FlatButton(onPressed: null, child: Text('Free Services'))
-                ],
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(child: DrawerHeader(child: Image.asset('assets/ganesha.png'))),
+                    FlatButton(
+                      child: Text('Free Services',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold
+                      ),),
+                       onPressed: (){
+                        Navig('Free Services','https://www.askganesha.com/free-astrology/default-free');
+                         },),
+                    FlatButton(
+                      child: Text('Free Horoscopes',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold
+                        ),),
+                      onPressed: (){
+                        Navig('Free Horoscopes','https://www.askganesha.com/free-astrology/free-horoscope');
+                      },),
+                    FlatButton(
+                      child: Text('Remedies',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold
+                        ),),
+                      onPressed: (){
+                        Navig('Remedies','https://www.askganesha.com/astrology-remedies');
+                      },),
+                    FlatButton(
+                      child: Text('Personalised Reports',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold
+                        ),),
+                      onPressed: (){
+                        Navig('Personalised Reports','https://www.askganesha.com/more-reports');
+                      },),
+                    FlatButton(
+                      child: Text('Consult the Astrologer',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold
+                        ),),
+                      onPressed: (){
+                        Navig('Consult the Astrologer','https://www.askganesha.com/more-reports');
+                      },),
+                    FlatButton(
+                      child: Text('Upcoming Festivals',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold
+                        ),),
+                      onPressed: (){
+                        Navig('Upcoming Festivals','https://www.askganesha.com/festivals');
+                      },),
+                    FlatButton(
+                      child: Text('Tap Counter',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold
+                        ),),
+                      onPressed: (){
+                        Navig('Tap Counter','https://valera-rozuvan.github.io/online-counter/');
+                      },),
+                    Divider(),
+                    FlatButton(
+                      child: Text('Contact Us',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold
+                        ),),
+                      onPressed: (){
+                        Navig('Contact Us','https://www.askganesha.com/contact');
+                      },),
+//                    FlatButton(
+//                      child: Text('Share App',
+//                        style: TextStyle(
+//                            fontWeight: FontWeight.bold
+//                        ),),
+//                      onPressed: (){
+//                        Navig('Like us on Facebook','https://www.facebook.com/studyabacus/');
+//                      },),
+                    FlatButton(
+                      child: Text('Like us on Facebook',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold
+                        ),),
+                      onPressed: (){
+                        Navig('Like us on Facebook','https://www.facebook.com/studyabacus/');
+                      },),
+                  ],
+                ),
               ),
             ),
             appBar :
@@ -47,21 +132,18 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: [
                           Expanded(
                             flex:1,
-                            child: SizedBox(
-                            ),
+                            child: SizedBox(),
                           ),
                           Expanded(
                             flex:6,
                             child: TabBar(
                               isScrollable: true,
                               tabs: [
-                                IconButton(icon: Icon(Icons.home), onPressed: null),
-                                IconButton(icon: Icon(Icons.face), onPressed: null),
-                                IconButton(icon: Icon(Icons.transfer_within_a_station), onPressed: null),
-                                IconButton(icon: Icon(Icons.g_translate), onPressed: null),
-                                IconButton(icon: Icon(Icons.transfer_within_a_station), onPressed: null),
-                                IconButton(icon: Icon(Icons.g_translate), onPressed: null),
-                                IconButton(icon: Icon(Icons.g_translate), onPressed: null),
+                                FaIcon(FontAwesomeIcons.home, size: 25,),
+                                FaIcon(FontAwesomeIcons.facebook, size: 25,),
+                                FaIcon(FontAwesomeIcons.youtube, size: 25,),
+                                FaIcon(FontAwesomeIcons.twitter, size: 25,),
+                                FaIcon(FontAwesomeIcons.rocketchat, size: 25,),
 
                               ],
                             ),
@@ -75,37 +157,42 @@ class _MyHomePageState extends State<MyHomePage> {
 
             body: TabBarView(
               children : [
-                Column(
-                  children: [
-                    Expanded(
-                      child: WebView(
-                        javascriptMode: JavascriptMode.unrestricted,
-                        initialUrl: 'https://www.askganesha.com/',
-                        onWebViewCreated: (WebViewController webViewController){
-                          controller.complete(webViewController);
-                          print('done');
-                        },
-                      ),
-                    ),
-                  ],
+                WebView(
+                  javascriptMode: JavascriptMode.unrestricted,
+                  initialUrl: 'https://www.askganesha.com/',
+                  onWebViewCreated: (WebViewController webViewController){
+                    controller.complete(webViewController);
+
+                  },
                 ),
-                Container(
-                  child: Text('Mine'),
+                WebView(
+                  javascriptMode: JavascriptMode.unrestricted,
+                  initialUrl: 'https://www.facebook.com/askganesa/',
+                  onWebViewCreated: (WebViewController webViewController){
+                    controller.complete(webViewController);
+
+                  },
                 ),
-                Container(
-                  child: Text('Mine'),
+                WebView(
+                  javascriptMode: JavascriptMode.unrestricted,
+                  initialUrl: 'https://www.youtube.com/user/accurateastrologers',
+                  onWebViewCreated: (WebViewController webViewController){
+                    controller.complete(webViewController);
+                  },
                 ),
-                Container(
-                  child: Text('Mine'),
+                WebView(
+                  javascriptMode: JavascriptMode.unrestricted,
+                  initialUrl: 'https://twitter.com/askganesha?lang=en',
+                  onWebViewCreated: (WebViewController webViewController){
+                    controller.complete(webViewController);
+                  },
                 ),
-                Container(
-                  child: Text('Mine'),
-                ),
-                Container(
-                  child: Text('Mine'),
-                ),
-                Container(
-                  child: Text('Mine'),
+                WebView(
+                  javascriptMode: JavascriptMode.unrestricted,
+                  initialUrl: 'http://blog.askganesha.com/',
+                  onWebViewCreated: (WebViewController webViewController){
+                    controller.complete(webViewController);
+                  },
                 ),
               ]
 
@@ -116,4 +203,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
     );
   }
+  void Navig(String name,String url){
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Secondary(name,url)));
+
+  }
 }
+
